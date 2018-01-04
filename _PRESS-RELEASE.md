@@ -1,4 +1,4 @@
-# Project Name #
+# Perfect Plate #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,29 +16,28 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Meal Prep ##
+  > Perfect Plate allows you to dynamically plate food and quickly receive nutrition info
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Athletes, the health-conscious, and go-getters
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > It's as simple as it sounds. This lightweight web app allows you to research foods with a no-nonsense interface. Combine different food items to create your perfect plate
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > It's a mental hassle to track nutrients by hand, or in heavyweight fitness apps with more features than you need
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Perfect Plate gives you what you need and nothing more... simple macronutrients counters.
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+## Quote from Aaron Pietsch, Founder ##
+  > "I made this app for myself so I could plan my meals without disrupting my day"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Simply search for an item and start building your plate
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Perfect Plate helped me lose 20 pounds"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > See how fast you can get up and running with perfect plate. Visit perfectplate.com to get started.
