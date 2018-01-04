@@ -1,0 +1,6 @@
+{
+    "editor.fontSize": 15,
+    "files.exclude": {
+        ".vscode": true
+    }
+}

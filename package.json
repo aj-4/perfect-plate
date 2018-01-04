@@ -1,0 +1,31 @@
+{
+  "name": "perfect-plate",
+  "description": "nutrition tracking web app",
+  "version": "1.0.0",
+  "dependencies": {
+    "nodemon": "^1.14.7",
+    "react": "^16.2.0"
+  },
+  "scripts": {
+    "start": "nodemon /server/server.js"
+  },
+  "main": ".js",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aj-4/hrsf86-mvp.git"
+  },
+  "keywords": [
+    "perfectplate",
+    "nutrition",
+    "health"
+  ],
+  "author": "aj-4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aj-4/hrsf86-mvp/issues"
+  },
+  "homepage": "https://github.com/aj-4/hrsf86-mvp#readme"
+}
