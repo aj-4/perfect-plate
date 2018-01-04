@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "nodemon /server/server.js",
-    "build": "webpack"
+    "build": "webpack --watch"
   },
   "main": ".js",
   "devDependencies": {

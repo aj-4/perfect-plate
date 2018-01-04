@@ -34,9 +34,9 @@ class App extends React.Component {
         return (
             <div>
                 <div className="header">
-                    <h1 className="vit-title"> Vitality </h1>
+                    <h1 className="vit-title"> Perfect Plate </h1>
                     <div className="heart-contain">
-                        <img className="heart" src="assets/heartbeat.png" /> 
+                        <img className="heart" src="assets/fork.png" /> 
                     </div>
                     <Search submit={this.submitSearch}/>  
                     <SelectedItem selected={selectedItem} jokes={jokes}/>
