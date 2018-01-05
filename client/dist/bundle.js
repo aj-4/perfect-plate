@@ -1097,7 +1097,6 @@ var App = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            //get list from db, 
             fetch('/plate').then(function (data) {
                 return data.json();
             }).then(function (data2) {
@@ -1122,8 +1121,6 @@ var App = function (_React$Component) {
                     fat: faT,
                     len: lenT
                 };
-
-                console.log('carb', carbT, 'pro', proT, 'fat', faT, 'len', lenT);
 
                 _this2.setState({ totalNut: insertNuts });
 
@@ -1151,7 +1148,6 @@ var App = function (_React$Component) {
             }).then(function (data) {
                 return data.json();
             }).then(function (data2) {
-                console.log('data here', data2[0]);
                 var dataSum = +data2[1] + +data2[2] + +data2[3];
                 _this3.setState({
                     selectedItem: { name: data2[0], protein: _this3.toPercent(data2[1], dataSum), fat: _this3.toPercent(data2[2], dataSum), carb: _this3.toPercent(data2[3], dataSum) }
@@ -1213,9 +1209,6 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'macros' },
-                        _react2.default.createElement(_measurement2.default, { img: './assets/carbs.png', name: 'carbs' }),
-                        _react2.default.createElement(_measurement2.default, { img: './assets/protein.png', name: 'protein' }),
-                        _react2.default.createElement(_measurement2.default, { img: './assets/fat.png', name: 'fat' }),
                         selectedItem.name !== 'Enter an Item' && _react2.default.createElement(
                             'div',
                             { className: 'nums' },
@@ -1249,7 +1242,10 @@ var App = function (_React$Component) {
                                     selectedItem.fat
                                 )
                             )
-                        )
+                        ),
+                        _react2.default.createElement(_measurement2.default, { img: './assets/carbs.png', name: 'carbs' }),
+                        _react2.default.createElement(_measurement2.default, { img: './assets/protein.png', name: 'protein' }),
+                        _react2.default.createElement(_measurement2.default, { img: './assets/fat.png', name: 'fat' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -18747,7 +18743,7 @@ var SavedList = function SavedList(_ref) {
             _react2.default.createElement(
                 'div',
                 { className: 'nut-totals-header' },
-                'Averages'
+                'Plate'
             ),
             _react2.default.createElement(
                 'span',

@@ -28,7 +28,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        //get list from db, 
         fetch('/plate')
         .then(data => data.json())
         .then(data2 => {
@@ -54,8 +53,6 @@ class App extends React.Component {
                 len: lenT
             }
 
-            console.log('carb', carbT, 'pro', proT, 'fat', faT, 'len', lenT);
-
             this.setState({totalNut: insertNuts})
 
             return formatAll;
@@ -79,7 +76,6 @@ class App extends React.Component {
             return data.json()
         })
         .then(data2 => {
-            console.log('data here', data2[0]);
             let dataSum = +data2[1] + +data2[2] + +data2[3];
             this.setState({ 
                 selectedItem: {name: data2[0], protein: this.toPercent(data2[1], dataSum), fat: this.toPercent(data2[2], dataSum), carb: this.toPercent(data2[3], dataSum)},
@@ -120,17 +116,19 @@ class App extends React.Component {
                             
                         </div>
                     <div className="macros">
+                        {
+                            selectedItem.name !== 'Enter an Item' && 
+                            <div className="nums">
+                                <span className="num-contain"><span className="num"> {selectedItem.carb}</span></span>
+                                <span className="num-contain"><span className="num"> {selectedItem.protein}</span></span>
+                                <span className="num-contain"><span className="num"> {selectedItem.fat}</span></span>
+                            </div>
+                        }
+
                         <Measurement img='./assets/carbs.png' name='carbs' />
                         <Measurement img='./assets/protein.png' name='protein' />
                         <Measurement img='./assets/fat.png' name='fat' />
-                            {
-                                selectedItem.name !== 'Enter an Item' && 
-                                <div className="nums">
-                                    <span className="num-contain"><span className="num"> {selectedItem.carb}</span></span>
-                                    <span className="num-contain"><span className="num"> {selectedItem.protein}</span></span>
-                                    <span className="num-contain"><span className="num"> {selectedItem.fat}</span></span>
-                                </div>
-                            }
+                            
                     </div>
                     <div className="listItems">
                         <SavedList listItems={savedItems} nutTotals={totalNut}/>

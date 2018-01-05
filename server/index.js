@@ -19,22 +19,17 @@ app.use(bodyParser.urlencoded({
 app.get('/', (req, res) => res.send('Hello, world!'));
 
 app.post('/api', (req, response) => {
-    // res.send(JSON.stringify([{"name": "yogurt"}]));
 
-    // console.log('in post', req);
     let query = req.body.query;
 
     let reqURL = 
     `https://api.nal.usda.gov/ndb/search/?format=json&q=${query}&api_key=${process.env.API_TOKEN}&ds=Standard Reference`;
 
-        //api call
     axios(reqURL)
     .then(res => {
         let resArr = res.data.list.item;
         let exact = resArr.sort((a, b) => a.name.length - b.name.length)[0];
         let ndbno = exact.ndbno;
-        // res.send(JSON.stringify(data.data.common[0]));
-        
 
         let ndbURL = 
         `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&api_key=${process.env.API_TOKEN}`
@@ -55,7 +50,6 @@ app.post('/api', (req, response) => {
         .map(nutrient => {
             return nutrient.value;
         })
-        //protein, fat, carb
         response.send(JSON.stringify([offName, ...nutrients]));
     })
     .catch(err => err, 'error in RP');
@@ -65,14 +59,10 @@ app.post('/api', (req, response) => {
 app.route('/plate')
     .get((req, res) => {
         
-        //test
         db.selectAll((results) => {
             console.log('results from db', results);
             res.send(JSON.stringify(results))
         })
-
-        // res.send(JSON.stringify([{name: 'Oranges'}, {name: 'Eggs'}]));
-
         
     })
     .post((req, res) => {

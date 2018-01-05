@@ -6,7 +6,6 @@ const connection = mysql.createConnection({
   database : 'perfectplate'
 });
  
-// connection.connect();
 const selectAll = (cb) => {
     connection.query('SELECT * FROM plate', function (error, results, fields) {
         if (error) {
