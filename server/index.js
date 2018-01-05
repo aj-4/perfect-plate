@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const dotenv = require('dotenv/config');
 
 const axios = require('axios');
 const morgan = require('morgan');
@@ -24,7 +25,7 @@ app.post('/api', (req, response) => {
     let query = req.body.query;
 
     let reqURL = 
-    `https://api.nal.usda.gov/ndb/search/?format=json&q=${query}&api_key=0Ga7Q2dzXgCjkJcggxTvySEgCgV80cWO9Emc12Nz&ds=Standard Reference`;
+    `https://api.nal.usda.gov/ndb/search/?format=json&q=${query}&api_key=${process.env.API_TOKEN}&ds=Standard Reference`;
 
         //api call
     axios(reqURL)
@@ -36,7 +37,7 @@ app.post('/api', (req, response) => {
         
 
         let ndbURL = 
-        `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&api_key=0Ga7Q2dzXgCjkJcggxTvySEgCgV80cWO9Emc12Nz`
+        `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&api_key=${process.env.API_TOKEN}`
     axios(ndbURL)
     .then(res => {
         let nutrients = res.data.report.food.nutrients;
