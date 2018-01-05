@@ -11,10 +11,10 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedItem: {name: 'Bread', protein: 10, fat: 10, carb: 10},
+            selectedItem: {name: 'Enter an Item', protein: 0, fat: 0, carb: 0},
             jokes: ['delicious', 'yum', 'interesting choice...', 'nice one', 'you really eat that?'],
             savedItems: [{name: 'Oranges'}, {name: 'Eggs'}],
-            totalNut: {carb: 10, protein: 10, fat: 10}
+            totalNut: {carb: 0, protein: 0, fat: 0}
         }
     }
 

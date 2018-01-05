@@ -9,7 +9,8 @@ const SelectedItem = ({selected, jokes}) => {
                 selected && selected.name
                 }</div> 
             <div className="selected-joke">{
-                jokes[Math.floor(Math.random(jokes.length))]
+                selected.name !== 'Enter an Item' &&
+                jokes[Math.floor(Math.random() * jokes.length)]
             }</div>
             <div >
                 {/* serve food-level stats here w/ new component */}
