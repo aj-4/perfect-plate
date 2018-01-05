@@ -1084,6 +1084,15 @@ var App = function (_React$Component) {
             return firstLetter + itemObj.name.toLowerCase().slice(1);
         }
     }, {
+        key: 'accumulateNutrients',
+        value: function accumulateNutrients(nut) {
+            return this.state.savedItems.map(function (item) {
+                return Number(item[nut].slice(0, -1));
+            }).reduce(function (a, v) {
+                return a + v;
+            });
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
@@ -1101,6 +1110,23 @@ var App = function (_React$Component) {
                     };
                 });
                 _this2.setState({ savedItems: formatAll });
+
+                var lenT = _this2.state.savedItems.length;
+                var carbT = _this2.accumulateNutrients('carb');
+                var proT = _this2.accumulateNutrients('protein');
+                var faT = _this2.accumulateNutrients('fat');
+
+                var insertNuts = {
+                    carb: carbT,
+                    protein: proT,
+                    fat: faT,
+                    len: lenT
+                };
+
+                console.log('carb', carbT, 'pro', proT, 'fat', faT, 'len', lenT);
+
+                _this2.setState({ totalNut: insertNuts });
+
                 return formatAll;
             }).catch(function (err) {
                 return console.error('error in cdm: ', err);
@@ -1147,6 +1173,13 @@ var App = function (_React$Component) {
                 savedItems: [selectedItem].concat(_toConsumableArray(savedItems)),
                 totalNut: newNut,
                 selectedItem: { name: 'Enter an Item', protein: 0, fat: 0, carb: 0 }
+            });
+            fetch('/plate', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify({ item: selectedItem })
             });
         }
     }, {

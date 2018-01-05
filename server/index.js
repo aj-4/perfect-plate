@@ -76,6 +76,10 @@ app.route('/plate')
     })
     .post((req, res) => {
         
+        let item = req.body.item;
+        console.log('reqbody', req.body.item, 'type is', typeof req.body.item);
+
+        db.insertOne(item, data => console.log('success'))
         
     });
 

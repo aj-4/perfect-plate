@@ -23,6 +23,10 @@ class App extends React.Component {
         return firstLetter + itemObj.name.toLowerCase().slice(1);
     }
 
+    accumulateNutrients(nut) {
+        return this.state.savedItems.map(item => Number(item[nut].slice(0, -1))).reduce((a,v) => a + v);
+    }
+
     componentDidMount() {
         //get list from db, 
         fetch('/plate')
@@ -37,6 +41,23 @@ class App extends React.Component {
                 }
             })
             this.setState({savedItems: formatAll});
+
+            let lenT = this.state.savedItems.length
+            let carbT = this.accumulateNutrients('carb')
+            let proT = this.accumulateNutrients('protein')
+            let faT = this.accumulateNutrients('fat')
+
+            let insertNuts = {
+                carb: carbT, 
+                protein: proT,
+                fat: faT, 
+                len: lenT
+            }
+
+            console.log('carb', carbT, 'pro', proT, 'fat', faT, 'len', lenT);
+
+            this.setState({totalNut: insertNuts})
+
             return formatAll;
         })
         .catch(err => console.error('error in cdm: ', err))
@@ -75,6 +96,13 @@ class App extends React.Component {
             totalNut: newNut,
             selectedItem: {name: 'Enter an Item', protein: 0, fat: 0, carb: 0}
         });
+        fetch('/plate', {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({item: selectedItem})
+        })
     }
 
     render(){
