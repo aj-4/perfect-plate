@@ -115,8 +115,8 @@
     margin: 0 5px;
 }
 
-.nums {
-    margin: 20;
+.nums { 
+    margin: 0 20px;
     font-family: 'Russo One', sans-serif;
 }
 /* 
@@ -133,7 +133,7 @@
     display: inline-block;
     margin: 5px;
     font-size: 3rem;
-    color: rgb(48, 48, 48)    
+    color: rgb(48, 48, 48);
 }
 
 .all-list-items {
