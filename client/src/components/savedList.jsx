@@ -14,7 +14,7 @@ const SavedList = ({listItems, nutTotals}) => {
                 nutTotals.len > 0 && 
                 <div className="nut-totals">
 
-                    <div className="nut-totals-header">Plate Totals</div>
+                    <div className="nut-totals-header">Averages</div>
 
                     <span className="nut-total-detail">Carb</span>
                     <span className="nut-total-item">{Math.round(nutTotals.carb / nutTotals.len) + '%'}</span>

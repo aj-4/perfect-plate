@@ -155,9 +155,17 @@
     color: darkgrey;
 }
 
+.nut-totals {
+    margin: 40px;
+}
+
 .nut-totals-header {
+    font-style: italic;
     text-transform: uppercase;
     font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: darkslategrey;
 }
 
 .nut-total-item {

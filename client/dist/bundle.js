@@ -18747,7 +18747,7 @@ var SavedList = function SavedList(_ref) {
             _react2.default.createElement(
                 'div',
                 { className: 'nut-totals-header' },
-                'Plate Totals'
+                'Averages'
             ),
             _react2.default.createElement(
                 'span',
