@@ -11,6 +11,9 @@ const SelectedItem = ({selected, jokes}) => {
             <div className="selected-joke">{
                 jokes[Math.floor(Math.random(jokes.length))]
             }</div>
+            <div >
+                {/* serve food-level stats here w/ new component */}
+            </div>
         </div>
     )
 };

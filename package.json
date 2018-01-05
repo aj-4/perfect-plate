@@ -3,13 +3,17 @@
   "description": "nutrition tracking web app",
   "version": "1.0.0",
   "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "morgan": "^1.9.0",
     "nodemon": "^1.14.7",
     "path": "^0.12.7",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "request-promise": "^4.2.2"
   },
   "scripts": {
-    "start": "nodemon /server/server.js",
+    "start": "nodemon server/index.js",
     "build": "webpack --watch"
   },
   "main": ".js",

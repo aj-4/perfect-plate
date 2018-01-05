@@ -17,16 +17,48 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-        //get list from db, 
-        //then,
-        // this.setState({ savedItems: [] });
+    formatName(itemObj) {
+        let firstLetter = itemObj.name[0].toUpperCase();
+        return firstLetter + itemObj.name.toLowerCase().slice(1);
     }
 
-    submitSearch(){
-        //api call here
-        //then,
-        this.setState({ selectedItem: {name: 'Yogurt'} });
+    componentDidMount() {
+        //get list from db, 
+        fetch('/plate')
+        .then(data => data.json())
+        .then(data2 => {
+            let formatAll = data2.map(item => {
+                return {
+                    name: this.formatName(item)
+                }
+            })
+            this.setState({savedItems: formatAll});
+            return formatAll;
+        })
+        .catch(err => console.error('error in cdm: ', err))
+    }
+
+    inForm(val) {
+        console.log(val);
+    }
+
+    submitSearch(e){
+        console.log('in submit search', e);
+        fetch('/api', {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({query: e})
+        })
+        .then(data => {
+            return data.json()
+        })
+        .then(data2 => {
+            console.log(data2);
+            this.setState({ selectedItem: {name: this.formatName(data2[0])} });
+        })
+        .catch(err => console.log(err, 'Error in submitSearch'))
     }
 
     render(){
@@ -38,7 +70,7 @@ class App extends React.Component {
                     <div className="heart-contain">
                         <img className="heart" src="assets/fork.png" /> 
                     </div>
-                    <Search submit={this.submitSearch}/>  
+                    <Search getFood={this.submitSearch.bind(this)}/>  
                     <SelectedItem selected={selectedItem} jokes={jokes}/>
                     <div className="macros">
                         <Measurement img='./assets/carbs.png' name='carbs' />
