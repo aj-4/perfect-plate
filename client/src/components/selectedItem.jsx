@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const SelectedItem = ({selected, jokes}) => {
+const SelectedItem = ({selected, jokes, addToList}) => {
     return (
         <div className = 'selected-contain'>
             {/* {selected} */}
@@ -13,7 +13,7 @@ const SelectedItem = ({selected, jokes}) => {
                 jokes[Math.floor(Math.random() * jokes.length)]
             }</div>
             <div >
-                {/* serve food-level stats here w/ new component */}
+                <button className="add-button" onClick={addToList}>Add To Plate</button>
             </div>
         </div>
     )

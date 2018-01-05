@@ -1052,6 +1052,8 @@ var _savedList2 = _interopRequireDefault(_savedList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -1068,9 +1070,9 @@ var App = function (_React$Component) {
 
         _this.state = {
             selectedItem: { name: 'Enter an Item', protein: 0, fat: 0, carb: 0 },
-            jokes: ['delicious', 'yum', 'interesting choice...', 'nice one', 'you really eat that?'],
-            savedItems: [{ name: 'Oranges' }, { name: 'Eggs' }],
-            totalNut: { carb: 0, protein: 0, fat: 0 }
+            jokes: ['delicious', 'yum', 'interesting choice...', 'nice one', 'you really eat that?', 'umm...'],
+            savedItems: [],
+            totalNut: { carb: 0, protein: 0, fat: 0, len: 0 }
         };
         return _this;
     }
@@ -1102,14 +1104,8 @@ var App = function (_React$Component) {
             });
         }
     }, {
-        key: 'inForm',
-        value: function inForm(val) {
-            console.log(val);
-        }
-    }, {
         key: 'toPercent',
         value: function toPercent(num, total) {
-            console.log(num, total);
             return Math.floor(Number(num) / Number(total) * 100) + '%';
         }
     }, {
@@ -1117,7 +1113,6 @@ var App = function (_React$Component) {
         value: function submitSearch(e) {
             var _this3 = this;
 
-            console.log('in submit search', e);
             fetch('/api', {
                 method: 'POST',
                 headers: {
@@ -1137,13 +1132,28 @@ var App = function (_React$Component) {
             });
         }
     }, {
-        key: 'render',
-        value: function render() {
+        key: 'addToList',
+        value: function addToList() {
             var _state = this.state,
                 selectedItem = _state.selectedItem,
-                jokes = _state.jokes,
                 savedItems = _state.savedItems,
                 totalNut = _state.totalNut;
+
+            var newNut = { carb: totalNut.carb + Number(selectedItem.carb.slice(0, -1)), protein: totalNut.protein + Number(selectedItem.protein.slice(0, -1)), fat: totalNut.fat + Number(selectedItem.fat.slice(0, -1)), len: totalNut.len + 1 };
+            this.setState({
+                savedItems: [selectedItem].concat(_toConsumableArray(savedItems)),
+                totalNut: newNut,
+                selectedItem: { name: 'Enter an Item', protein: 0, fat: 0, carb: 0 }
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state2 = this.state,
+                selectedItem = _state2.selectedItem,
+                jokes = _state2.jokes,
+                savedItems = _state2.savedItems,
+                totalNut = _state2.totalNut;
 
             return _react2.default.createElement(
                 'div',
@@ -1162,41 +1172,8 @@ var App = function (_React$Component) {
                         _react2.default.createElement('img', { className: 'heart', src: 'assets/fork.png' })
                     ),
                     _react2.default.createElement(_search2.default, { getFood: this.submitSearch.bind(this) }),
-                    _react2.default.createElement(_selectedItem2.default, { selected: selectedItem, jokes: jokes }),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'nums top-nums' },
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'num-contain' },
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'num' },
-                                'carbs: ',
-                                selectedItem.carb
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'num-contain' },
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'num' },
-                                'protein: ',
-                                selectedItem.protein
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'num-contain' },
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'num' },
-                                'fat: ',
-                                selectedItem.fat
-                            )
-                        )
-                    ),
+                    _react2.default.createElement(_selectedItem2.default, { selected: selectedItem, jokes: jokes, addToList: this.addToList.bind(this) }),
+                    _react2.default.createElement('div', { className: 'nums top-nums' }),
                     _react2.default.createElement(
                         'div',
                         { className: 'macros' },
@@ -1213,7 +1190,7 @@ var App = function (_React$Component) {
                                     'span',
                                     { className: 'num' },
                                     ' ',
-                                    totalNut.carb
+                                    selectedItem.carb
                                 )
                             ),
                             _react2.default.createElement(
@@ -1222,7 +1199,8 @@ var App = function (_React$Component) {
                                 _react2.default.createElement(
                                     'span',
                                     { className: 'num' },
-                                    totalNut.protein
+                                    ' ',
+                                    selectedItem.protein
                                 )
                             ),
                             _react2.default.createElement(
@@ -1231,7 +1209,8 @@ var App = function (_React$Component) {
                                 _react2.default.createElement(
                                     'span',
                                     { className: 'num' },
-                                    totalNut.fat
+                                    ' ',
+                                    selectedItem.fat
                                 )
                             )
                         )
@@ -1239,7 +1218,7 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'listItems' },
-                        _react2.default.createElement(_savedList2.default, { listItems: savedItems })
+                        _react2.default.createElement(_savedList2.default, { listItems: savedItems, nutTotals: totalNut })
                     )
                 )
             );
@@ -18560,12 +18539,10 @@ var Search = function (_React$Component) {
         key: 'handleChange',
         value: function handleChange(e) {
             this.state.inForm = e.target.value;
-            console.log(e.target.value);
         }
     }, {
         key: 'handleClick',
         value: function handleClick() {
-            console.log(this.state.inForm);
             this.props.getFood(this.state.inForm);
         }
     }, {
@@ -18583,7 +18560,7 @@ var Search = function (_React$Component) {
                     _react2.default.createElement(
                         'button',
                         { className: 'search-button', onClick: this.handleClick.bind(this) },
-                        'Add to Plate'
+                        'Search'
                     )
                 )
             );
@@ -18658,7 +18635,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var SelectedItem = function SelectedItem(_ref) {
     var selected = _ref.selected,
-        jokes = _ref.jokes;
+        jokes = _ref.jokes,
+        addToList = _ref.addToList;
 
     return _react2.default.createElement(
         'div',
@@ -18673,7 +18651,15 @@ var SelectedItem = function SelectedItem(_ref) {
             { className: 'selected-joke' },
             selected.name !== 'Enter an Item' && jokes[Math.floor(Math.random() * jokes.length)]
         ),
-        _react2.default.createElement('div', null)
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'button',
+                { className: 'add-button', onClick: addToList },
+                'Add To Plate'
+            )
+        )
     );
 };
 
@@ -18705,7 +18691,8 @@ var _listItem2 = _interopRequireDefault(_listItem);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SavedList = function SavedList(_ref) {
-    var listItems = _ref.listItems;
+    var listItems = _ref.listItems,
+        nutTotals = _ref.nutTotals;
 
     var allItems = listItems.map(function (itemData) {
         return _react2.default.createElement(
@@ -18717,7 +18704,46 @@ var SavedList = function SavedList(_ref) {
     return _react2.default.createElement(
         'div',
         { className: 'all-list-items' },
-        allItems
+        allItems,
+        nutTotals.len > 0 && _react2.default.createElement(
+            'div',
+            { className: 'nut-totals' },
+            _react2.default.createElement(
+                'div',
+                { className: 'nut-totals-header' },
+                'Plate Totals'
+            ),
+            _react2.default.createElement(
+                'span',
+                { className: 'nut-total-detail' },
+                'Carb'
+            ),
+            _react2.default.createElement(
+                'span',
+                { className: 'nut-total-item' },
+                Math.round(nutTotals.carb / nutTotals.len) + '%'
+            ),
+            _react2.default.createElement(
+                'span',
+                { className: 'nut-total-detail' },
+                'Protein'
+            ),
+            _react2.default.createElement(
+                'span',
+                { className: 'nut-total-item' },
+                Math.round(nutTotals.protein / nutTotals.len) + '%'
+            ),
+            _react2.default.createElement(
+                'span',
+                { className: 'nut-total-detail' },
+                'Fat'
+            ),
+            _react2.default.createElement(
+                'span',
+                { className: 'nut-total-item' },
+                Math.round(nutTotals.fat / nutTotals.len) + '%'
+            )
+        )
     );
 };
 
@@ -18747,6 +18773,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ListItem = function ListItem(_ref) {
     var itemData = _ref.itemData;
 
+    console.log(itemData);
     return _react2.default.createElement(
         'div',
         { className: 'list-item-container' },
@@ -18758,9 +18785,11 @@ var ListItem = function ListItem(_ref) {
         _react2.default.createElement(
             'div',
             { className: 'list-item-info' },
-            itemData.cals,
-            itemData.fats,
-            itemData.carbs
+            itemData.carb,
+            '/',
+            itemData.protein,
+            '/',
+            itemData.fat
         )
     );
 };

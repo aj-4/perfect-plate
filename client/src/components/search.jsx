@@ -11,11 +11,9 @@ class Search extends React.Component {
     
     handleChange(e) {
         this.state.inForm = e.target.value;
-        console.log(e.target.value);
     }
 
     handleClick() {
-        console.log(this.state.inForm)
         this.props.getFood(this.state.inForm);
     }
     
@@ -25,7 +23,7 @@ class Search extends React.Component {
             <div className="search-contain">
                 <div className="search-form">
                     <input className="search-food" onChange={this.handleChange.bind(this)} type="text" placeholder="Find a Food"/>
-                    <button className="search-button" onClick={this.handleClick.bind(this)}>Add to Plate</button>
+                    <button className="search-button" onClick={this.handleClick.bind(this)}>Search</button>
                 </div>
             </div>
         )

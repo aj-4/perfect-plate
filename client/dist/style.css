@@ -47,11 +47,33 @@
 
 .search-button:hover {
     cursor: pointer;
+    color: white;
+    background-color: #E03A00;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.add-button {
+    padding: 10px;
+    letter-spacing: 1px;
+    border-radius: 30%;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.add-button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: darkslategrey;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.search-button:hover {
+    cursor: pointer;
 }
 
 .selected-contain {
     text-align: center;
-    background: #f1f1f1;
+    background: #9FC09A;
     margin: 20px 0 -60px 0;
     padding: 10px;
     height: 120px;
@@ -60,9 +82,9 @@
 
 .selected-title {
     font-size: 5rem;
-    font-family: 'Helvetica';
+    font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
-    color: rgb(48, 48, 48)
+    color: darkslategray;
 }
 
 .selected-joke {
@@ -118,7 +140,7 @@
     margin: 10px auto;
     width: 50%;
     text-align: left;
-    padding: 30px;
+    padding: 40px;
     background-color: #effdf4;
 }
 
@@ -126,4 +148,25 @@
     font-size: 2rem;
     font-family: 'Enriqueta', serif;
     text-align: center;
+}
+
+.list-item-info {
+    float: right;
+    color: darkgrey;
+}
+
+.nut-totals-header {
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.nut-total-item {
+    font-family: 'Josefin Sans', sans-serif;    
+    padding: 10px;
+    font-size: 3rem;
+}
+
+.nut-total-detail {
+    font-family: 'Josefin Sans', sans-serif;
+    color: darkslategrey;
 }

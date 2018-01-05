@@ -12,9 +12,9 @@ class App extends React.Component {
         super();
         this.state = {
             selectedItem: {name: 'Enter an Item', protein: 0, fat: 0, carb: 0},
-            jokes: ['delicious', 'yum', 'interesting choice...', 'nice one', 'you really eat that?'],
-            savedItems: [{name: 'Oranges'}, {name: 'Eggs'}],
-            totalNut: {carb: 0, protein: 0, fat: 0}
+            jokes: ['delicious', 'yum', 'interesting choice...', 'nice one', 'you really eat that?','umm...'],
+            savedItems: [],
+            totalNut: {carb: 0, protein: 0, fat: 0, len:0}
         }
     }
 
@@ -39,17 +39,11 @@ class App extends React.Component {
         .catch(err => console.error('error in cdm: ', err))
     }
 
-    inForm(val) {
-        console.log(val);
-    }
-
     toPercent(num, total) {
-        console.log(num, total);
         return Math.floor(Number(num) / Number(total) * 100) + '%'
     }
 
     submitSearch(e){
-        console.log('in submit search', e);
         fetch('/api', {
             method: 'POST',
             headers: {
@@ -70,6 +64,16 @@ class App extends React.Component {
         .catch(err => console.log(err, 'Error in submitSearch'))
     }
 
+    addToList() {
+        const {selectedItem, savedItems, totalNut} = this.state;
+        let newNut = {carb: (totalNut.carb + Number(selectedItem.carb.slice(0, -1))), protein: totalNut.protein + Number(selectedItem.protein.slice(0, -1)), fat: totalNut.fat + Number(selectedItem.fat.slice(0, -1)), len: totalNut.len + 1}
+        this.setState({
+            savedItems: [selectedItem, ...savedItems], 
+            totalNut: newNut,
+            selectedItem: {name: 'Enter an Item', protein: 0, fat: 0, carb: 0}
+        });
+    }
+
     render(){
         const {selectedItem, jokes, savedItems, totalNut} = this.state;
         return (
@@ -80,24 +84,26 @@ class App extends React.Component {
                         <img className="heart" src="assets/fork.png" /> 
                     </div>
                     <Search getFood={this.submitSearch.bind(this)}/>  
-                    <SelectedItem selected={selectedItem} jokes={jokes}/>
+                    <SelectedItem selected={selectedItem} jokes={jokes} addToList={this.addToList.bind(this)}/>
                     <div className="nums top-nums">
-                            <span className="num-contain"><span className="num">carbs: {selectedItem.carb}</span></span>
-                            <span className="num-contain"><span className="num">protein: {selectedItem.protein}</span></span>
-                            <span className="num-contain"><span className="num">fat: {selectedItem.fat}</span></span>
+                            
                         </div>
                     <div className="macros">
                         <Measurement img='./assets/carbs.png' name='carbs' />
                         <Measurement img='./assets/protein.png' name='protein' />
                         <Measurement img='./assets/fat.png' name='fat' />
                         <div className="nums">
-                            <span className="num-contain"><span className="num"> {totalNut.carb}</span></span>
+                            <span className="num-contain"><span className="num"> {selectedItem.carb}</span></span>
+                            <span className="num-contain"><span className="num"> {selectedItem.protein}</span></span>
+                            <span className="num-contain"><span className="num"> {selectedItem.fat}</span></span>
+
+                            {/* <span className="num-contain"><span className="num"> {totalNut.carb}</span></span>
                             <span className="num-contain"><span className="num">{totalNut.protein}</span></span>
-                            <span className="num-contain"><span className="num">{totalNut.fat}</span></span>
+                            <span className="num-contain"><span className="num">{totalNut.fat}</span></span> */}
                         </div>
                     </div>
                     <div className="listItems">
-                        <SavedList listItems={savedItems}/>
+                        <SavedList listItems={savedItems} nutTotals={totalNut}/>
                     </div>
                 </div>
             </div>

@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 
 const axios = require('axios');
-
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const db = require('../database/index');
 
 const API_KEY = require('./config2');
 
@@ -65,7 +65,12 @@ app.route('/plate')
     .get((req, res) => {
         
         //test
-        res.send(JSON.stringify([{name: 'Oranges'}, {name: 'Eggs'}]));
+        db.selectAll((results) => {
+            console.log('results from db', results);
+            res.send(JSON.stringify(results))
+        })
+
+        // res.send(JSON.stringify([{name: 'Oranges'}, {name: 'Eggs'}]));
 
         
     })
