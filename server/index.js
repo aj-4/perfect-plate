@@ -33,12 +33,14 @@ app.post('/api', (req, response) => {
         let exact = resArr.sort((a, b) => a.name.length - b.name.length)[0];
         let ndbno = exact.ndbno;
         // res.send(JSON.stringify(data.data.common[0]));
+        
 
         let ndbURL = 
         `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&api_key=0Ga7Q2dzXgCjkJcggxTvySEgCgV80cWO9Emc12Nz`
     axios(ndbURL)
     .then(res => {
         let nutrients = res.data.report.food.nutrients;
+        console.log(res.data.report.food.nutrients[0].measures);
         let offName = res.data.report.food.name;
         nutrients = nutrients
         .filter(nutrient => {
@@ -52,7 +54,6 @@ app.post('/api', (req, response) => {
         .map(nutrient => {
             return nutrient.value;
         })
-        console.log(nutrients);
         //protein, fat, carb
         response.send(JSON.stringify([offName, ...nutrients]));
     })
