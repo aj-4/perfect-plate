@@ -1216,7 +1216,7 @@ var App = function (_React$Component) {
                         _react2.default.createElement(_measurement2.default, { img: './assets/carbs.png', name: 'carbs' }),
                         _react2.default.createElement(_measurement2.default, { img: './assets/protein.png', name: 'protein' }),
                         _react2.default.createElement(_measurement2.default, { img: './assets/fat.png', name: 'fat' }),
-                        _react2.default.createElement(
+                        selectedItem.name !== 'Enter an Item' && _react2.default.createElement(
                             'div',
                             { className: 'nums' },
                             _react2.default.createElement(

@@ -123,15 +123,14 @@ class App extends React.Component {
                         <Measurement img='./assets/carbs.png' name='carbs' />
                         <Measurement img='./assets/protein.png' name='protein' />
                         <Measurement img='./assets/fat.png' name='fat' />
-                        <div className="nums">
-                            <span className="num-contain"><span className="num"> {selectedItem.carb}</span></span>
-                            <span className="num-contain"><span className="num"> {selectedItem.protein}</span></span>
-                            <span className="num-contain"><span className="num"> {selectedItem.fat}</span></span>
-
-                            {/* <span className="num-contain"><span className="num"> {totalNut.carb}</span></span>
-                            <span className="num-contain"><span className="num">{totalNut.protein}</span></span>
-                            <span className="num-contain"><span className="num">{totalNut.fat}</span></span> */}
-                        </div>
+                            {
+                                selectedItem.name !== 'Enter an Item' && 
+                                <div className="nums">
+                                    <span className="num-contain"><span className="num"> {selectedItem.carb}</span></span>
+                                    <span className="num-contain"><span className="num"> {selectedItem.protein}</span></span>
+                                    <span className="num-contain"><span className="num"> {selectedItem.fat}</span></span>
+                                </div>
+                            }
                     </div>
                     <div className="listItems">
                         <SavedList listItems={savedItems} nutTotals={totalNut}/>
