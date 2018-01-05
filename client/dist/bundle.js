@@ -1094,7 +1094,10 @@ var App = function (_React$Component) {
             }).then(function (data2) {
                 var formatAll = data2.map(function (item) {
                     return {
-                        name: _this2.formatName(item)
+                        name: _this2.formatName(item),
+                        carb: item.carb,
+                        protein: item.protein,
+                        fat: item.fat
                     };
                 });
                 _this2.setState({ savedItems: formatAll });

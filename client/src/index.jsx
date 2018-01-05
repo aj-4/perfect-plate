@@ -30,7 +30,10 @@ class App extends React.Component {
         .then(data2 => {
             let formatAll = data2.map(item => {
                 return {
-                    name: this.formatName(item)
+                    name: this.formatName(item),
+                    carb: item.carb,
+                    protein: item.protein,
+                    fat: item.fat
                 }
             })
             this.setState({savedItems: formatAll});

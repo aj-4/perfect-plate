@@ -9,8 +9,8 @@ const connection = mysql.createConnection({
 // connection.connect();
 const selectAll = (cb) => {
     connection.query('SELECT * FROM plate', function (error, results, fields) {
-        if (err) {
-            console.log(err, "Err in SelectAll");
+        if (error) {
+            console.log(error, "Err in SelectAll");
         } else {
             cb(results);
         }
