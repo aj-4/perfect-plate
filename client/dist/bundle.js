@@ -18679,7 +18679,7 @@ var SelectedItem = function SelectedItem(_ref) {
         { className: 'selected-contain' },
         _react2.default.createElement(
             'div',
-            { className: 'selected-title' },
+            { className: 'selected-title', style: selected.name === 'Enter an Item' ? { 'fontSize': '5rem', 'color': 'white' } : {} },
             selected && selected.name
         ),
         _react2.default.createElement(
@@ -18690,7 +18690,7 @@ var SelectedItem = function SelectedItem(_ref) {
         _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(
+            selected.name !== 'Enter an Item' && _react2.default.createElement(
                 'button',
                 { className: 'add-button', onClick: addToList },
                 'Add To Plate'

@@ -53,6 +53,7 @@
 }
 
 .add-button {
+    margin: 15px;
     padding: 10px;
     letter-spacing: 1px;
     border-radius: 30%;
@@ -81,7 +82,7 @@
 }
 
 .selected-title {
-    font-size: 5rem;
+    font-size: 4rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
     color: darkslategray;

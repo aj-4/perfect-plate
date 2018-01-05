@@ -5,7 +5,7 @@ const SelectedItem = ({selected, jokes, addToList}) => {
     return (
         <div className = 'selected-contain'>
             {/* {selected} */}
-            <div className="selected-title">{
+            <div className="selected-title" style={selected.name === 'Enter an Item' ? {'fontSize' : '5rem', 'color': 'white'} : {}}>{
                 selected && selected.name
                 }</div> 
             <div className="selected-joke">{
@@ -13,7 +13,10 @@ const SelectedItem = ({selected, jokes, addToList}) => {
                 jokes[Math.floor(Math.random() * jokes.length)]
             }</div>
             <div >
-                <button className="add-button" onClick={addToList}>Add To Plate</button>
+                {
+                    selected.name !== 'Enter an Item' &&
+                    <button className="add-button" onClick={addToList}>Add To Plate</button>
+                }
             </div>
         </div>
     )
