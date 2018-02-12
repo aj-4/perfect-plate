@@ -1,5 +1,6 @@
 # perfect_plate #
 Find Macronutrient Information for any Food Item
+
 ![demo](https://media.giphy.com/media/3ohc1fswlK1sGvwvyo/giphy.gif)
 
   > Perfect Plate allows you to dynamically plate food and quickly receive nutrition info
